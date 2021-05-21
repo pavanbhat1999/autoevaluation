@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
 from backend.api.preprocess import process_input
+from backend.api.predict import predict
+
 import sys
 import numpy
 numpy.set_printoptions(threshold=sys.maxsize)
@@ -16,9 +18,15 @@ def input(request):
         answer = AnswerForm(request.POST)
         if answer.is_valid():
             answer = answer.cleaned_data['answer']
-        #########TODO#########################################################################################
+
+        # processing of answer    
         pre_answer= process_input(answer)
         print(pre_answer)
+
+        #################Use this answer vector and directly predict################
+
+
+
         marks = predict(pre_answer)
 
 
@@ -30,12 +38,5 @@ def input(request):
         
     return render(request,"form.html")
 
-def predict(request):
-    ################Composite Algorithm prediction###################
 
-    
-    #just return prediction marks
-    prediction = "Marks predicted is  5"
-    
-    return prediction,
     

@@ -157,8 +157,8 @@ def get_count_vectors(essays):
     
     return feature_names, count_vectors
 
-def Preprocessing():
-    dataframe = pd.read_csv('essays_and_scores.csv', encoding = 'latin-1')
+def preprocessing():
+    dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
     # getting relevant columns
 
     data = dataframe[['essay_set','essay','domain1_score']].copy()
