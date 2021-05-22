@@ -21,7 +21,7 @@ def input(request):
 
         # processing of answer    
         preprocessed_answer= preprocessing(answer,isTest=True)
-        print(preprocessed_answer)
+        #print(preprocessed_answer)
 
         #################Use this answer vector and directly predict################
 

@@ -9,7 +9,7 @@ class Model:
 def predict(answer):
     X_train,X_test,y_train,y_test = preprocessing()
 
-
+    print("\n Shapes of content ",X_train.shape,X_test.shape,answer.shape)
     y_pred = answer
     model = Model()
     prediction = model.predict(y_pred)    
