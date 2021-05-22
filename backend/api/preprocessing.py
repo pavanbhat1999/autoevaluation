@@ -147,6 +147,27 @@ def count_pos(essay):
                 adv_count += 1
             
     return noun_count, adj_count, verb_count, adv_count
+def extract_features(data):
+    
+    features = data.copy()
+    
+    features['char_count'] = features['essay'].apply(char_count)
+    
+    features['word_count'] = features['essay'].apply(word_count)
+    
+    features['sent_count'] = features['essay'].apply(sent_count)
+    
+    features['avg_word_len'] = features['essay'].apply(avg_word_len)
+    
+    features['lemma_count'] = features['essay'].apply(count_lemmas)
+    
+    #features['spell_err_count'] = features['essay'].apply(count_spell_error)
+    
+    features['noun_count'], features['adj_count'], features['verb_count'], features['adv_count'] = zip(*features['essay'].map(count_pos))
+    
+    return features
+
+
 def get_count_vectors(essays):
     
     vectorizer = CountVectorizer(max_features = 10000, ngram_range=(1, 3), stop_words='english')
@@ -162,19 +183,71 @@ def fit_count_vectors(essays,answer):
     text_vector= vectorizer.transform([answer])
     text_vector = text_vector.toarray()
     return text_vector
+# def preprocessing(answer=None,isTest=False):
+#     dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
+#     # getting relevant columns
+
+#     data = dataframe[['essay_set','essay','domain1_score']].copy()
+#     if(isTest):
+#         text_vector = fit_count_vectors(data[data['essay_set'] == 1]['essay'],answer)
+#         return(text_vector)
+#     else:
+#         feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
+
+#         X_cv = count_vectors.toarray()
+
+#         y_cv = data[data['essay_set'] == 1]['domain1_score']
+#         X_train, X_test, y_train, y_test = train_test_split(X_cv, y_cv, test_size = 0.3)
+#         return (X_train,X_test,y_train,y_test)
+
+##### NEw Features extraction Part
 def preprocessing(answer=None,isTest=False):
     dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
-    # getting relevant columns
-
     data = dataframe[['essay_set','essay','domain1_score']].copy()
+    
     if(isTest):
+        
+        new_data = [[1,answer]]
+        new_data = pd.DataFrame(new_data,columns=['essay_set','essay'])
+        print("Extracting Features of given answer.....")
+        features_set_answer = extract_features(new_data)
+        print("Feature Extraction Complete....")
+        print(features_set_answer)
         text_vector = fit_count_vectors(data[data['essay_set'] == 1]['essay'],answer)
+        text_vector = np.concatenate((features_set_answer.iloc[:, 3:].to_numpy(),text_vector), axis = 1)
+        print("return it....")
         return(text_vector)
     else:
+        print("calculating Vectors : ")
         feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
-
-        X_cv = count_vectors.toarray()
-
+    
+        X_cv = count_vectors.toarray()  # X without features only BOW
         y_cv = data[data['essay_set'] == 1]['domain1_score']
-        X_train, X_test, y_train, y_test = train_test_split(X_cv, y_cv, test_size = 0.3)
+        print(y_cv.shape)
+
+
+        print("Extracting Features for test.....")
+        features_set1 = extract_features(data[data['essay_set'] == 1])
+        print("Feature Extraction Complete....")
+        print(features_set1)
+
+
+
+
+
+        print("Creation of X and y")
+        X = np.concatenate((features_set1.iloc[:, 3:].to_numpy(), X_cv), axis = 1)
+        y = features_set1['domain1_score'].to_numpy()
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
+        print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
+
         return (X_train,X_test,y_train,y_test)
+
+
+
+
+
+
+
+
