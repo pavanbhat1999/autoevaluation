@@ -163,7 +163,7 @@ def preprocessing():
 
     data = dataframe[['essay_set','essay','domain1_score']].copy()
     
-    print(data)
+    
     feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
 
     X_cv = count_vectors.toarray()
@@ -171,7 +171,7 @@ def preprocessing():
     y_cv = data[data['essay_set'] == 1]['domain1_score']
     X_train, X_test, y_train, y_test = train_test_split(X_cv, y_cv, test_size = 0.3)
     return (X_train,X_test,y_train,y_test)
-def process_input(text):
+def preprocessing_input(text):
     dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
     # getting relevant columns
     

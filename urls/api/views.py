@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
-from backend.api.preprocess import process_input
+from backend.api.preprocessing import preprocessing_input
 from backend.api.predict import predict
 
 import sys
@@ -20,7 +20,7 @@ def input(request):
             answer = answer.cleaned_data['answer']
 
         # processing of answer    
-        pre_answer= process_input(answer)
+        pre_answer= preprocessing_input(answer)
         print(pre_answer)
 
         #################Use this answer vector and directly predict################
@@ -31,6 +31,19 @@ def input(request):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        ################################################################################
 
 
 
