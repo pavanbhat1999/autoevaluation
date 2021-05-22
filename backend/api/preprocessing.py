@@ -156,31 +156,25 @@ def get_count_vectors(essays):
     feature_names = vectorizer.get_feature_names()
     
     return feature_names, count_vectors
-
-def preprocessing():
-    dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
-    # getting relevant columns
-
-    data = dataframe[['essay_set','essay','domain1_score']].copy()
-    
-    
-    feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
-
-    X_cv = count_vectors.toarray()
-
-    y_cv = data[data['essay_set'] == 1]['domain1_score']
-    X_train, X_test, y_train, y_test = train_test_split(X_cv, y_cv, test_size = 0.3)
-    return (X_train,X_test,y_train,y_test)
-def preprocessing_input(text):
-    dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
-    # getting relevant columns
-    
-    data = dataframe[['essay_set','essay','domain1_score']].copy()
-    
+def fit_count_vectors(essays,answer):
     vectorizer = CountVectorizer(max_features = 10000, ngram_range=(1, 3), stop_words='english')
-    
-    count_vectors = vectorizer.fit_transform(data[data['essay_set'] == 1]['essay'])
-    
-    text= vectorizer.transform([text])
-    text = text.toarray()
-    return text
+    count_vectors = vectorizer.fit_transform(essays)
+    text_vector= vectorizer.transform([answer])
+    text_vector = text_vector.toarray()
+    return text_vector
+def preprocessing(answer,isTest=False):
+    dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
+    # getting relevant columns
+
+    data = dataframe[['essay_set','essay','domain1_score']].copy()
+    if(isTest):
+        text_vector = fit_count_vectors(data[data['essay_set'] == 1]['essay'],answer)
+        return(text_vector)
+    else:
+        feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
+
+        X_cv = count_vectors.toarray()
+
+        y_cv = data[data['essay_set'] == 1]['domain1_score']
+        X_train, X_test, y_train, y_test = train_test_split(X_cv, y_cv, test_size = 0.3)
+        return (X_train,X_test,y_train,y_test)

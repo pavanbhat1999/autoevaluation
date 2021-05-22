@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django import forms
-from backend.api.preprocessing import preprocessing_input
+from backend.api.preprocessing import preprocessing
 from backend.api.predict import predict
 
 import sys
@@ -11,7 +11,7 @@ class AnswerForm(forms.Form):
    answer = forms.CharField(max_length = 100)
    
 
-
+# Input Page
 def input(request):
     if request.method == "POST":
 
@@ -20,14 +20,14 @@ def input(request):
             answer = answer.cleaned_data['answer']
 
         # processing of answer    
-        pre_answer= preprocessing_input(answer)
-        print(pre_answer)
+        preprocessed_answer= preprocessing(answer,isTest=True)
+        print(preprocessed_answer)
 
         #################Use this answer vector and directly predict################
 
 
 
-        marks = predict(pre_answer)
+        marks = predict(preprocessed_answer)
 
 
 
@@ -47,9 +47,12 @@ def input(request):
 
 
 
-        return HttpResponse(pre_answer)
-        
+        response = redirect('results/')
+        return(response)
     return render(request,"form.html")
 
+##  Result Page    
+def results(request):
+    return render(request,"Result.html")
 
     
