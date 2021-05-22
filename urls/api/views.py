@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django import forms
 from backend.api.preprocessing import preprocessing
-from backend.api.predict import predict
+from backend.api.predict import execute
 
 import sys
 import numpy
@@ -27,7 +27,7 @@ def input(request):
 
 
 
-        marks = predict(preprocessed_answer)
+        marks = execute(preprocessed_answer)
 
 
 
