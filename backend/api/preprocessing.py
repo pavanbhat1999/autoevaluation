@@ -162,7 +162,7 @@ def fit_count_vectors(essays,answer):
     text_vector= vectorizer.transform([answer])
     text_vector = text_vector.toarray()
     return text_vector
-def preprocessing(answer,isTest=False):
+def preprocessing(answer=None,isTest=False):
     dataframe = pd.read_csv('http://127.0.0.1:8000/static/essays.csv', encoding = 'latin-1')
     # getting relevant columns
 

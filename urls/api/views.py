@@ -47,12 +47,11 @@ def input(request):
 
 
 
-        response = redirect('results/')
-        return(response)
+        return render(request,"Result.html",{'vectoranswer':preprocessed_answer,'prediction':marks})
     return render(request,"form.html")
 
 ##  Result Page    
-def results(request):
-    return render(request,"Result.html")
+# def results(request):
+#     return render(request,"Result.html")
 
     
