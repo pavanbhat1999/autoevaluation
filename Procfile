@@ -1,1 +1,1 @@
-web: gunicorn autoeval.wsgi --log-file -
+web: gunicorn AutoEval.wsgi --log-file -
