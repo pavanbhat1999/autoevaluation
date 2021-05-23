@@ -6,8 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
-# import nltk
-# nltk.download('all')
+import nltk
+nltk.download('all')
 import re, collections
 from collections import defaultdict
 from sklearn.feature_extraction.text import CountVectorizer
