@@ -202,7 +202,7 @@ def fit_count_vectors(essays,answer):
 
 ##### NEw Features extraction Part
 def preprocessing(answer=None,isTest=False):
-    dataframe = pd.read_csv('/static/essays.csv', encoding = 'latin-1')
+    dataframe = pd.read_csv('static/essays.csv', encoding = 'latin-1')
     data = dataframe[['essay_set','essay','domain1_score']].copy()
     
     if(isTest):
