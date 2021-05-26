@@ -16,6 +16,7 @@ def execute(answer):
     y_pred = answer
     print(answer.shape)
     model = Model()
+    #model.training()
     prediction = model.predict(y_pred)    
 
     

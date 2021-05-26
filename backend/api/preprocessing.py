@@ -216,7 +216,7 @@ def preprocessing(answer=None,isTest=False):
         print("Feature Extraction Complete....")
         print(features_set_answer)
         text_vector = fit_count_vectors(data[data['essay_set'] == 1]['essay'],answer)
-        text_vector = np.concatenate((features_set_answer.iloc[:, 3:].to_numpy(),text_vector), axis = 1)
+        text_vector = np.concatenate((features_set_answer.iloc[:, 2:].to_numpy(),text_vector), axis = 1)
         print("return it....")
         return(text_vector)
     else:
