@@ -245,11 +245,3 @@ def preprocessing(answer=None,isTest=False):
         print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
 
         return (X_train,X_test,y_train,y_test)
-
-
-
-
-
-
-
-

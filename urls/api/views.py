@@ -51,7 +51,5 @@ def input(request):
     return render(request,"form.html")
 
 ##  Result Page    
-# def results(request):
-#     return render(request,"Result.html")
-
-    
+def results(request):
+    return render(request,"Result.html")
