@@ -4,7 +4,7 @@ class Model:
     def __init__(self):
         pass
     def training(self):
-            X_train,X_test,y_train,y_test = preprocessing()
+            X_train,X_test,y_train,y_test = preprocessing(answer=None,isTest=False)
 
             print("\n Shapes of content ",X_train.shape,X_test.shape)
     def predict(self,answer):
