@@ -12,6 +12,7 @@ import urls.odu_api.cosine_similarity as keywordVal
 import urls.odu_api.configurations as configurations
 
 
+from gingerit.gingerit import GingerIt
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -62,8 +63,15 @@ def givVal(model_answer, keywords, answer, out_of):
 
 # GRAMMAR =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    # req = requests.get("https://api.textgears.com/check.php?text=" + answer + "&key=JmcxHCCPZ7jfXLF6")
-    # no_of_errors = len(req.json()['errors'])
+    try:
+        text = answer
+
+        parser = GingerIt()
+        text=parser.parse(text)
+        print(text)
+        print(len(text['corrections'])) 
+    except:
+        print("an exception occured")
     no_of_errors = 1
     if no_of_errors > 5  or k==6 :
         g = 0
