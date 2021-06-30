@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from django.views.generic import RedirectView
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('home/',include('frontend.urls')),
     path('', RedirectView.as_view(url='/input/', permanent=True)),
     path('input/',include('urls.api.urls')),
     path('get_answers/',include('urls.odu_api.urls')),

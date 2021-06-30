@@ -63,15 +63,15 @@ def givVal(model_answer, keywords, answer, out_of):
 
 # GRAMMAR =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    try:
-        text = answer
+#     try:
+        # text = answer
 
-        parser = GingerIt()
-        text=parser.parse(text)
-        print(text)
-        print(len(text['corrections'])) 
-    except:
-        print("an exception occured")
+        # parser = GingerIt()
+        # text=parser.parse(text)
+        # print(text)
+        # print(len(text['corrections'])) 
+    # except:
+        # print("an exception occured")
     no_of_errors = 1
     if no_of_errors > 5  or k==6 :
         g = 0

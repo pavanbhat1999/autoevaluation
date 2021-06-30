@@ -55,4 +55,4 @@ def show_results(request):
                 marks2=str(each_users_answers.val()['result2'])
                 marks3=str(each_users_answers.val()['result3'])
                     
-    return render(request,"out.html",{'marks1':marks1,'marks2':marks2,'marks3':marks3})
+    return render(request,"out.html",{'email':email,'marks1':marks1,'marks2':marks2,'marks3':marks3})
