@@ -32,7 +32,7 @@
                 </div>
                 <form id='login' class='input-group-login' action="login" method="POST">
     {% csrf_token %}
-            <input type='text'class='input-field'placeholder='Email Id' name="username" required >
+            <input type='text'class='input-field'placeholder='User Name' name="username" required >
 		    <input type='password'class='input-field'placeholder='Enter Password' name="password" required>
 		    <input type='checkbox'class='check-box'><span>Remember Password</span>
 		    <button type='submit'class='submit-btn'>Log in</button>
@@ -40,8 +40,8 @@
 		 <form id='register' class='input-group-register' method="POST" action="register">
              
     {% csrf_token %}
-		     <input type='text'class='input-field'placeholder='First Name' name="firstname" required>
-		     <input type='text'class='input-field'placeholder='Last Name ' name="lastname" required>
+		     <input type='text'class='input-field'placeholder='Unique User Name' name="username" required>
+			 {% comment %}<input type='text'class='input-field'placeholder='Last Name ' name="lastname" required>{% endcomment %}
 		     <input type='email'class='input-field'placeholder='Email Id' name="email" required>
 		     <input type='password'class='input-field'placeholder='Enter Password' name="password1" required>
 		     <input type='password'class='input-field'placeholder='Confirm Password' name="password2"  required>

@@ -1,3 +1,4 @@
+{% if user.is_authenticated %}
 {{message}}
 <h1>Welcome {{user}} You can Take your test</h1>
 <form action = "" method = "post">
@@ -6,4 +7,8 @@
     <input id="answer" type="text" name="answer">
     <input type="submit" value="OK">
 </form>
-<a href="logout">Logout</a>
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+<p>You are Not logged in</p>
+<p><a href="{% url 'login' %}">Login</a></p>
+{% endif %}
