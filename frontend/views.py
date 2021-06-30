@@ -19,7 +19,8 @@ def register(request):
 
         except:
             return HttpResponse("error in register Please register again")
-    return render(request,'form.html',{'message':message})
+    # return render(request,'form.html',{'message':message})
+    return render(request,'test_select.html',{'message':message})
 def login(request):
     message=""
     if request.method == "POST":
