@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',include('frontend.urls')),
     # path('', RedirectView.as_view(url='/input/', permanent=True)),
+    path('',RedirectView.as_view(url='/home/',permanent=False)),
     path('input/',include('urls.api.urls')),
     path('get_answers/',include('urls.odu_api.urls')),
    
