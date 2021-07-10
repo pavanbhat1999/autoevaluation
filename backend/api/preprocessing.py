@@ -6,8 +6,6 @@ import numpy as np
 # import matplotlib.pyplot as plt
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
-# import nltk
-# nltk.download('all')
 import re, collections
 from collections import defaultdict
 from sklearn.feature_extraction.text import CountVectorizer
@@ -239,6 +237,49 @@ def preprocessing(answer=None,isTest=False):
 
         print("Creation of X and y")
         X = np.concatenate((features_set1.iloc[:, 3:].to_numpy(), X_cv), axis = 1)
+        y = features_set1['domain1_score'].to_numpy()
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
+        print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
+
+        return (X_train,X_test,y_train,y_test)
+#### Pre processing Only using features
+def preprocessing_features(answer=None,isTest=False):
+    dataframe = pd.read_csv('static/essays.csv', encoding = 'latin-1')
+    data = dataframe[['essay_set','essay','domain1_score']].copy()
+    
+    if(isTest):
+        
+        new_data = [[1,answer]]
+        new_data = pd.DataFrame(new_data,columns=['essay_set','essay'])
+        print("Extracting Features of given answer.....")
+        features_set_answer = extract_features(new_data)
+        print("Feature Extraction Complete....")
+        print(features_set_answer)
+        text_vector = fit_count_vectors(data[data['essay_set'] == 1]['essay'],answer)
+        text_vector = features_set_answer.iloc[:, 2:].to_numpy()
+        print("return it....")
+        return(text_vector)
+    else:
+        # print("calculating Vectors : ")
+        # feature_names_cv, count_vectors = get_count_vectors(data[data['essay_set'] == 1]['essay'])
+    
+        # X_cv = count_vectors.toarray()  # X without features only BOW
+        y_cv = data[data['essay_set'] == 1]['domain1_score']
+        print(y_cv.shape)
+
+
+        print("Extracting Features for test.....")
+        features_set1 = extract_features(data[data['essay_set'] == 1])
+        print("Feature Extraction Complete....")
+        print(features_set1)
+
+
+
+
+
+        print("Creation of X and y")
+        X = features_set1.iloc[:, 3:].to_numpy()
         y = features_set1['domain1_score'].to_numpy()
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
