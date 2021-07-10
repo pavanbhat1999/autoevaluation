@@ -1,4 +1,5 @@
 from backend.api.preprocessing import preprocessing,preprocessing_features
+import pickle
 
 class Model:
     def __init__(self):
@@ -12,8 +13,13 @@ class Model:
 
         print("\n Shapes of content ",X_train.shape,X_test.shape)
     def predict(self,answer):
+        filename = "static/finalized_model.sav"
+        loaded_model = pickle.load(open(filename, 'rb'))
+        result = loaded_model.predict([[6,148,72,35,0,33.6,0.627,50]])
+        print(result)
+
         
-        return("#################   Marks given by Composite should Display#################################")
+        return(result)
 def execute(answer):
 
     
