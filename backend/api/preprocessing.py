@@ -1,5 +1,5 @@
 # importing required packages
-
+import pickle
 import nltk
 import pandas as pd
 import numpy as np
@@ -178,9 +178,8 @@ def get_count_vectors(essays):
     
     return feature_names, count_vectors
 def fit_count_vectors(essays,answer):
-    vectorizer = CountVectorizer(max_features = 10000, ngram_range=(1, 3), stop_words='english')
-    count_vectors = vectorizer.fit_transform(essays)
-    text_vector= vectorizer.transform([answer])
+    vectorizer = pickle.load(open('static/text.sav','rb'))
+    text_vector = vectorizer.transform([answer])
     text_vector = text_vector.toarray()
     return text_vector
 # def preprocessing(answer=None,isTest=False):
