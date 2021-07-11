@@ -1,14 +1,35 @@
-{% if user.is_authenticated %}
+<!--<form action = "" method = "post">-->
+    <!--<label for="answer">Write a short note on computers</label>-->
+    <!--<input id="answer" type="text" name="answer">-->
+    <!--<input type="submit" value="OK">-->
+<!--</form>-->
+<!--<p><a href="{% url 'logout' %}">Log Out</a></p>-->
+
+<html>
+    {% if user.is_authenticated %}
 {{message}}
-<h1>Welcome {{user}} You can Take your test</h1>
-<form action = "" method = "post">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Answer page</title>
+        <link rel="stylesheet" href="/static/text.css">
+<div id="wrapper">
+<!--<h1>Welcome {{user}} You can Take your test</h1>-->
+
+	<form id="paper" method="post" action="">
     {% csrf_token %}
-    <label for="answer">Write a short note on computers</label>
-    <input id="answer" type="text" name="answer">
-    <input type="submit" value="OK">
-</form>
-<p><a href="{% url 'logout' %}">Log Out</a></p>
+
+		<div id="margin"><b>Question: Write Short Not on Effects of Computer <input id="title" type="text" name="title"></div>
+		<textarea placeholder="Write Your Answer here..." id="text" name="answer" rows="2000" style="overflow: visible; word-wrap: break-word; resize: 10; height: 620px; width: 710px; "></textarea>  
+		<br>
+		<input id="button" type="submit" value="Submit">
+        <a href="{% url 'logout' %}"><input id="logout"  value="Logout" style="width: 120px;"></a>
+		
+	</form>
+
+</div>
 {% else %}
 <p>You are Not logged in</p>
 <p><a href="{% url 'login' %}">Login</a></p>
 {% endif %}
+</html>

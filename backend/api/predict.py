@@ -19,7 +19,7 @@ class Model:
         print(result)
 
         
-        return(result)
+        return(round(result[0]))
 def execute(answer):
 
     
