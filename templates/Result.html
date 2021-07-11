@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
-</head>
-<body>
-    User : {{user}}
-    <br>
-    Marks given : {{prediction}}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <hr>
-    <button>Analysis Data</button>
+<!--    User : {{user}}-->
+    <!--<br>-->
+    <!--Marks given : {{prediction}}-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<hr>-->
+    <!--<button>Analysis Data</button>-->
     <!--<p align=center> Feature Vector</p>-->
     <!--{{feature_vector}}-->
     <!--<br>-->
@@ -26,6 +17,16 @@
     <!--{{vectoranswer}}-->
     <!--<br>-->
     
-    
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Data Analysis</title>
+        <link rel="stylesheet" href="/static/a.css">
+        <article>
+            <h1>USER NAME : {{user}}</h1><br>
+            <h1>MARKS GIVEN BY COMPUTER: {{prediction}}</h1><br><br><br>
+          </article>
+    <div class="wrap">
+        <button class="button">Analysis Data</button>
+      </div>
 </html>

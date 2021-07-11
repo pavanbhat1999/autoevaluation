@@ -1,4 +1,39 @@
-<h1 align=center> Select test for {{user}}</h1>
+<!--<h1 align=center> Select test for {{user}}</h1>-->
+<!--<html>-->
+<!--<head>-->
+<!--<style>-->
+<!--body {-->
+<!--background-image:url(/static/bg_computer.jpg);-->
+  <!--background-size: cover;-->
+<!--}-->
+ 
+  
+<!--.button {-->
+  
+  <!--border-radius: 50px;-->
+  <!--background-color: rgb(225, 236, 162);-->
+  <!--border: 5;-->
+  <!--color: #8cb98c;-->
+  <!--text-align: center;-->
+  <!--font-size: 28px;-->
+  <!--padding: 20px;-->
+  <!--width: 250px;-->
+  <!--transition: all 0.5s;-->
+  <!--cursor: pointer;-->
+  <!--margin: 5px;-->
+  <!--margin-top: 200px;-->
+
+<!--}-->
+
+<!--.button span {-->
+  <!--cursor: pointer;-->
+  <!--display: inline-block;-->
+  <!--position: relative;-->
+  <!--transition: 0.4s;-->
+  <!--vertical-align: middle;-->
+<!--}-->
+
+<!--.button span:after {-->
 <html>
 <head>
 <style>
@@ -6,66 +41,74 @@ body {
 background-image:url(/static/bg_computer.jpg);
   background-size: cover;
 }
+.example_f {
+   border-radius: 40px;
+   background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   text-transform: uppercase;
+   font-size: 22px;
+   padding: 20px;
+   width: 300px;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 5px;
+ }
+ .example_f span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.4s;
+ }
+ .example_f span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -40px;
+   transition: 0.5s;
+ }
+ .example_f:hover span {
+   padding-right: 25px;
+ }
+ .example_f:hover span:after {
+   opacity: 1;
+   right: 0;
+ }
+.example_d {
+	color: #b6d6c5 !important;
+	text-transform: uppercase;
+	background: #5fafe4;
+	padding: 20px;
+  width: 200px;
+  font-size: 25px;
+	border: 4px solid #cce9da !important;
+	border-radius: 16px;
+	display: inline-block;
+	transition: all 0.3s ease 0s;
+}
+
+.example_d:hover {
+	color: #494949 !important;
+	border-radius: 50px;
+	border-color: #494949 !important;
+	transition: all 0.3s ease 0s;
+}
  
-  
-.button {
-  
-  border-radius: 50px;
-  background-color: rgb(225, 236, 162);
-  border: 5;
-  color: #8cb98c;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 250px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-  margin-top: 200px;
-
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.4s;
-  vertical-align: middle;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: 80px;
-  transition: 0.1s;
-}
-
-.button:hover span {
-  padding-right: 30px;
-}
-
-.button:hover span:after {
-  opacity: 10;
-  right: 10;
-}
-div{
-    display: flex;
-   flex-direction: column; 
-  width: 100%; 
-  align-items: center;
-}
+ 
 </style>
 </head>
 <body>
 
 
 <div>
-<a href="/input"><button class="button"><span>Take Test-1</span></button></a>
-<a href="/get_answers"><button class="button"><span>Take Test-2 </span></button></a>
-<a href="{%url 'logout' %}"><button class = "button logout"><span>LOGOUT</span></button></a>
+  <br>
+  <br><br><br><br><br><br>
+  
+  <div class="button_cont" align="center"><a class="example_f" href="/input"  rel="nofollow"><span>Take Test-1</a></div> <br><br><br><br><br><br>
+<div class="button_cont" align="center"><a class="example_f" href="/get_answers"  rel="nofollow"><span>Take Test-2</a></div> <br><br><br><br><br><br>
+<div class="button_cont" align="center"><a class="example_d" href="{%url 'logout' %}" target="_blank" rel="nofollow noopener noreferrer" draggable="false">Logout</a></div>
 </div>
 </body>
 </html>
-
