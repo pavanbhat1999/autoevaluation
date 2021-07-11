@@ -8,7 +8,7 @@ import sys
 import numpy
 numpy.set_printoptions(threshold=sys.maxsize)
 class AnswerForm(forms.Form):
-   answer = forms.CharField(max_length = 100)
+   answer = forms.CharField()
    
 
 # Input Page
@@ -31,7 +31,7 @@ def input(request):
 
 
 
-        marks = execute(preprocessed_answer)
+        marks = execute(feature_vector)
 
 
 

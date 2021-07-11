@@ -13,9 +13,9 @@ class Model:
 
         print("\n Shapes of content ",X_train.shape,X_test.shape)
     def predict(self,answer):
-        filename = "static/finalized_model.sav"
-        loaded_model = pickle.load(open(filename, 'rb'))
-        result = loaded_model.predict([[6,148,72,35,0,33.6,0.627,50]])
+        filename = "static/model.sav"
+        model = pickle.load(open(filename, 'rb'))
+        result = model.predict(answer)
         print(result)
 
         
