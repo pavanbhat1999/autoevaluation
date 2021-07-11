@@ -1,4 +1,71 @@
-<h1> Select test for {{user}}</h1>
-<a href="/input">Take Test 1</a>
-<a href="/get_answers">Take Test 2</a>
-<p><a href="{% url 'logout' %}">Log Out</a></p>
+<h1 align=center> Select test for {{user}}</h1>
+<html>
+<head>
+<style>
+body {
+background-image:url(/static/bg_computer.jpg);
+  background-size: cover;
+}
+ 
+  
+.button {
+  
+  border-radius: 50px;
+  background-color: rgb(225, 236, 162);
+  border: 5;
+  color: #8cb98c;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 200px;
+
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+  vertical-align: middle;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 80px;
+  transition: 0.1s;
+}
+
+.button:hover span {
+  padding-right: 30px;
+}
+
+.button:hover span:after {
+  opacity: 10;
+  right: 10;
+}
+div{
+    display: flex;
+   flex-direction: column; 
+  width: 100%; 
+  align-items: center;
+}
+</style>
+</head>
+<body>
+
+
+<div>
+<a href="/input"><button class="button"><span>Take Test-1</span></button></a>
+<a href="/get_answers"><button class="button"><span>Take Test-2 </span></button></a>
+<a href="{%url 'logout' %}"><button class = "button logout"><span>LOGOUT</span></button></a>
+</div>
+</body>
+</html>
+
