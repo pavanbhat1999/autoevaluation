@@ -36,7 +36,7 @@
     {% csrf_token %}
             <input type='text'class='input-field'placeholder='User Name' name="username" required >
 		    <input type='password'class='input-field'placeholder='Enter Password' name="password" required>
-		    <input type='checkbox'class='check-box'><span>Remember Password</span>
+			{% comment %}<input type='checkbox'class='check-box'><span>Remember Password</span>{% endcomment %}
 		    <button type='submit'class='submit-btn'>Log in</button>
 		 </form>
 		 <form id='register' class='input-group-register' method="POST" action="register">
@@ -47,7 +47,7 @@
 		     <input type='email'class='input-field'placeholder='Email Id' name="email" required>
 		     <input type='password'class='input-field'placeholder='Enter Password' name="password1" required>
 		     <input type='password'class='input-field'placeholder='Confirm Password' name="password2"  required>
-		     <input type='checkbox'class='check-box'><span>I agree to the terms and conditions</span>
+			 {% comment %}<input type='checkbox'class='check-box'><span>I agree to the terms and conditions</span>{% endcomment %}
                     <button type='submit'class='submit-btn'>Register</button>
 	         </form>
             </div>
