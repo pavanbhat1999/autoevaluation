@@ -57,3 +57,5 @@ def input(request):
 ##  Result Page    
 def results(request):
     return render(request,"Result.html")
+def analysis(request):
+    return render(request,"analysis.html")
