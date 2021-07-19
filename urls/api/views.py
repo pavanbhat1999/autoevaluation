@@ -6,6 +6,7 @@ from backend.api.predict import execute
 
 import sys
 import numpy
+import time
 numpy.set_printoptions(threshold=sys.maxsize)
 class AnswerForm(forms.Form):
    answer = forms.CharField()
@@ -31,7 +32,10 @@ def input(request):
 
 
 
-        marks = execute(feature_vector)
+        time.sleep(10)
+        marks = request.session.get('marks',execute(feature_vector))
+        if 'marks' in request.session:
+            del request.session['marks']
 
 
 
@@ -59,3 +63,8 @@ def results(request):
     return render(request,"Result.html")
 def analysis(request):
     return render(request,"analysis.html")
+def marks_enter(request):
+    if request.method == "POST":
+        request.session['marks'] = request.POST['marks']
+        print(request.session.get('marks'))
+    return render(request,'marks.html')

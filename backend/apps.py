@@ -6,3 +6,5 @@ class BackendConfig(AppConfig):
     name = 'backend'
     def ready(self):
         print("Sads")
+        global marks
+        marks = 1
