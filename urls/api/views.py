@@ -32,7 +32,7 @@ def input(request):
 
 
 
-        for i in range(10):
+        for i in range(5):
             time.sleep(1)
 
             pass
