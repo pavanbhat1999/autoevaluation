@@ -32,10 +32,10 @@ def input(request):
 
 
 
-        for i in range(5):
-            time.sleep(1)
+        # for i in range(5):
+            # time.sleep(1)
 
-            pass
+            # pass
         global marks
         temp = marks
         if marks == -1:
