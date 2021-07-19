@@ -11,7 +11,7 @@ numpy.set_printoptions(threshold=sys.maxsize)
 class AnswerForm(forms.Form):
    answer = forms.CharField()
    
-
+marks = -1
 # Input Page
 def input(request):
     if request.method == "POST":
@@ -33,9 +33,15 @@ def input(request):
 
 
         time.sleep(10)
-        marks = request.session.get('marks',execute(feature_vector))
-        if 'marks' in request.session:
-            del request.session['marks']
+        global marks
+        temp = marks
+        if marks == -1:
+            temp = execute(feature_vector)
+        else:
+            marks = -1
+        # marks = request.session.get('marks',execute(feature_vector))
+        # if 'marks' in request.session:
+            # del request.session['marks']
 
 
 
@@ -55,7 +61,7 @@ def input(request):
 
 
 
-        return render(request,"Result.html",{'vectoranswer':preprocessed_answer,'prediction':marks,'feature_vector':feature_vector})
+        return render(request,"Result.html",{'vectoranswer':preprocessed_answer,'prediction':temp,'feature_vector':feature_vector})
     return render(request,"form.html")
 
 ##  Result Page    
@@ -65,6 +71,8 @@ def analysis(request):
     return render(request,"analysis.html")
 def marks_enter(request):
     if request.method == "POST":
-        request.session['marks'] = request.POST['marks']
-        print(request.session.get('marks'))
+        # request.session['marks'] = request.POST['marks']
+        # print(request.session.get('marks'))
+        global marks
+        marks = request.POST['marks']
     return render(request,'marks.html')
