@@ -16,10 +16,12 @@ class Model:
         filename = "static/model.sav"
         model = pickle.load(open(filename, 'rb'))
         result = model.predict(answer)
+        result = int(input())
         print(result)
 
         
-        return(round(result[0]))
+        # return(round(result[0]))
+        return(result)
 def execute(answer):
 
     
