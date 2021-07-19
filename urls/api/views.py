@@ -32,7 +32,8 @@ def input(request):
 
 
 
-        for i in range(1000000000):
+        for i in range(10):
+            time.sleep(1)
 
             pass
         global marks
